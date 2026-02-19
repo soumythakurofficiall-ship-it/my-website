@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StreakRank — Study. Compete. Share.</title>
+    <meta
+      name="description"
+      content="StreakRank production app: Firebase Auth + Firestore powered exam prep gamification."
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container nav-inner">
+        <a href="#home" class="brand"><span class="brand-dot"></span> StreakRank</a>
+        <div class="nav-actions">
+          <a class="btn btn-ghost" href="#dashboard">Open Dashboard</a>
+          <button id="logoutBtn" class="btn btn-ghost" type="button" hidden>Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <p class="chip">Live Firebase App • Phase 1 Production</p>
+            <h1 class="hero-title">Turn daily study into <span>rank, streak, and status</span>.</h1>
+            <p class="hero-copy">
+              Build consistency with real account progress, dynamic XP updates, and real-time leaderboard
+              competition powered by Firebase.
+            </p>
+            <div class="hero-actions">
+              <a href="#dashboard" class="btn btn-primary">Start Free Sprint</a>
+              <a href="#features" class="btn btn-ghost">See Features</a>
+            </div>
+          </div>
+
+          <aside class="hero-card reveal">
+            <h3 style="margin-top: 0">Live Pulse</h3>
+            <div class="quick-stats">
+              <div><b id="statActive">0</b><small>Active users</small></div>
+              <div><b id="statMinutes">0</b><small>Weekly mins</small></div>
+              <div><b id="statShares">0</b><small>Total XP K</small></div>
+            </div>
+            <div class="ticker"><span id="tickerText">Sign in and add your first study session to enter the leaderboard.</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="features">
+        <div class="container">
+          <h2 class="section-title reveal">Core MVP Features</h2>
+          <p class="section-sub reveal">Real accounts, real progress, and real-time competition with secure data handling.</p>
+          <div class="feature-grid">
+            <article class="glass-card feature-card reveal">
+              <p class="chip">Focus</p>
+              <h3>Session Logger</h3>
+              <p>Log 25/45/60 minute sessions, instantly gain XP, and update your learning progress map.</p>
+            </article>
+            <article class="glass-card feature-card reveal">
+              <p class="chip">Motivation</p>
+              <h3>Dynamic XP Engine</h3>
+              <p>XP, level progression, and streak updates are persisted to Firestore and synced across sessions.</p>
+            </article>
+            <article class="glass-card feature-card reveal">
+              <p class="chip">Social</p>
+              <h3>Live Leaderboard</h3>
+              <p>Leaderboard auto-updates in real-time using Firestore snapshots for continuous competition.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <h2 class="section-title reveal">Social Proof</h2>
+          <p class="section-sub reveal">Growth metrics pulled from live user data.</p>
+          <div class="social-proof-grid">
+            <div class="glass-card feature-card reveal"><b class="big" id="proofUsers">0</b><p>Registered students</p></div>
+            <div class="glass-card feature-card reveal"><b class="big" id="proofMinutes">0</b><p>Tracked weekly minutes</p></div>
+            <div class="glass-card feature-card reveal"><b class="big" id="proofXp">0</b><p>Total XP earned</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="dashboard">
+        <div class="container">
+          <h2 class="section-title reveal">User Dashboard</h2>
+          <p class="section-sub reveal">Signup/login, track progress, log sessions, and climb leaderboard.</p>
+
+          <div class="dashboard-grid">
+            <div class="glass-card panel reveal">
+              <h3 style="margin-top: 0">Authentication</h3>
+              <div class="auth-tabs">
+                <button class="tab active" data-mode="login">Login</button>
+                <button class="tab" data-mode="signup">Signup</button>
+              </div>
+              <form class="form" id="authForm" novalidate>
+                <div class="field">
+                  <label for="nameInput">Name</label>
+                  <input id="nameInput" name="name" type="text" maxlength="60" placeholder="Aarav Singh" />
+                </div>
+                <div class="field">
+                  <label for="emailInput">Email</label>
+                  <input id="emailInput" name="email" type="email" placeholder="you@example.com" required />
+                </div>
+                <div class="field">
+                  <label for="passwordInput">Password</label>
+                  <input id="passwordInput" name="password" type="password" minlength="8" required />
+                </div>
+                <div class="field" id="examField" hidden>
+                  <label for="examInput">Target Exam</label>
+                  <select id="examInput" name="exam">
+                    <option value="JEE">JEE</option>
+                    <option value="NEET">NEET</option>
+                    <option value="CUET">CUET</option>
+                    <option value="Semester">Semester</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary" id="authSubmitBtn" type="submit">Login</button>
+                <small id="authHint" class="hint">Login to view and track your progress.</small>
+                <small id="authError" class="error"></small>
+              </form>
+
+              <hr />
+
+              <h3>Log Study Session</h3>
+              <form class="form" id="sessionForm" novalidate>
+                <div class="field">
+                  <label for="subjectInput">Subject</label>
+                  <select id="subjectInput" name="subject" required>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Mock Tests">Mock Tests</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="minutesInput">Minutes</label>
+                  <input id="minutesInput" name="minutes" type="number" min="5" max="180" value="25" required />
+                </div>
+                <button class="btn btn-primary" type="submit" id="sessionSubmitBtn">Add Session + XP</button>
+                <small id="sessionError" class="error"></small>
+              </form>
+            </div>
+
+            <div class="glass-card panel reveal">
+              <h3 style="margin-top: 0">XP + Progress</h3>
+              <p id="welcomeText" class="hint">Please login to access your dashboard.</p>
+              <div class="kpi" id="kpiCards"></div>
+
+              <h4>Level Progress</h4>
+              <div class="meter"><i id="xpMeter"></i></div>
+              <p id="levelLabel" class="hint"></p>
+
+              <h4>Subject Progress</h4>
+              <div class="progress-list" id="progressList"></div>
+
+              <h4>Leaderboard (Real-time)</h4>
+              <div class="leaderboard" id="leaderboard"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <small>© 2026 StreakRank. Firebase-powered production-ready MVP.</small>
+        <small>Built with secure auth, Firestore rules, and modular JS.</small>
+      </div>
+    </footer>
+
+    <script src="./js/firebase-config.js"></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
