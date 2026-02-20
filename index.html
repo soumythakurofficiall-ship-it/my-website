@@ -3,707 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StreakRank — Study. Compete. Share.</title>
+    <title>King Soumy Thakur | Level 14 Coronation</title>
     <meta
       name="description"
-      content="StreakRank Phase 1 MVP: AI-ready exam prep gamification with streaks, XP, and leaderboard-driven motivation."
+      content="A cinematic ultra-premium cosmic coronation birthday experience for Soumy Thakur turning 14 on February 21."
     />
-    <style>
-      :root {
-        --bg-0: #09090f;
-        --bg-1: #0f1020;
-        --card: rgba(255, 255, 255, 0.08);
-        --stroke: rgba(255, 255, 255, 0.16);
-        --text: #e8ebff;
-        --muted: #b8bed8;
-        --primary: #9a6bff;
-        --secondary: #35d6ff;
-        --success: #58f29d;
-        --warning: #ffd166;
-        --danger: #ff6b8a;
-        --shadow: 0 10px 30px rgba(18, 18, 34, 0.45);
-        --radius: 18px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Inter, Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: radial-gradient(circle at 20% 0%, #1f1140 0%, var(--bg-0) 45%),
-          radial-gradient(circle at 80% 10%, #061d2e 0%, transparent 30%),
-          var(--bg-1);
-        color: var(--text);
-        min-height: 100%;
-        scroll-behavior: smooth;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .container {
-        width: min(1100px, 92vw);
-        margin: 0 auto;
-      }
-
-      /* Navigation */
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        backdrop-filter: blur(14px);
-        background: rgba(7, 7, 15, 0.65);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .nav-inner {
-        min-height: 68px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .brand {
-        font-weight: 800;
-        letter-spacing: 0.2px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .brand-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: linear-gradient(120deg, var(--primary), var(--secondary));
-        box-shadow: 0 0 18px #8a73ff;
-      }
-
-      .btn {
-        border: none;
-        outline: none;
-        cursor: pointer;
-        border-radius: 14px;
-        color: #fff;
-        font-weight: 650;
-        transition: transform 0.2s ease, box-shadow 0.25s ease, opacity 0.2s ease;
-      }
-
-      .btn:active {
-        transform: translateY(1px) scale(0.99);
-      }
-
-      .btn-primary {
-        background: linear-gradient(120deg, var(--primary), #6a8bff, var(--secondary));
-        box-shadow: 0 8px 24px rgba(90, 115, 255, 0.35);
-        padding: 12px 18px;
-      }
-
-      .btn-ghost {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        padding: 11px 16px;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-        opacity: 0.96;
-      }
-
-      /* Section base */
-      section {
-        padding: 68px 0;
-      }
-
-      .section-title {
-        font-size: clamp(1.4rem, 2vw + 0.5rem, 2rem);
-        margin: 0 0 10px;
-      }
-
-      .section-sub {
-        color: var(--muted);
-        margin: 0 0 26px;
-        line-height: 1.6;
-      }
-
-      /* Hero */
-      .hero {
-        padding-top: 52px;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .hero-title {
-        font-size: clamp(2rem, 6vw, 3.4rem);
-        line-height: 1.1;
-        margin: 0;
-      }
-
-      .hero-title span {
-        background: linear-gradient(110deg, #d6c6ff 0%, #9dc8ff 35%, #76f8ff 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .hero-copy {
-        color: var(--muted);
-        font-size: 1.03rem;
-        max-width: 60ch;
-        line-height: 1.65;
-      }
-
-      .hero-actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .hero-card,
-      .glass-card {
-        border-radius: var(--radius);
-        border: 1px solid var(--stroke);
-        background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(10px);
-      }
-
-      .hero-card {
-        padding: 18px;
-      }
-
-      .quick-stats {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .quick-stats div {
-        background: rgba(9, 11, 22, 0.65);
-        border-radius: 14px;
-        padding: 10px;
-      }
-
-      .quick-stats b {
-        display: block;
-        font-size: 1.1rem;
-      }
-
-      .ticker {
-        margin-top: 12px;
-        color: #d6dbff;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-
-      .ticker span {
-        display: inline-block;
-        padding-left: 100%;
-        animation: ticker 16s linear infinite;
-      }
-
-      @keyframes ticker {
-        from { transform: translateX(0); }
-        to { transform: translateX(-100%); }
-      }
-
-      /* Features */
-      .feature-grid,
-      .social-proof-grid,
-      .dashboard-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .feature-card {
-        padding: 18px;
-      }
-
-      .feature-card h3 {
-        margin-top: 8px;
-        margin-bottom: 6px;
-      }
-
-      .chip {
-        display: inline-block;
-        font-size: 0.78rem;
-        color: #d3e9ff;
-        padding: 5px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        background: rgba(255, 255, 255, 0.06);
-      }
-
-      /* Dashboard */
-      .panel {
-        padding: 18px;
-      }
-
-      .auth-tabs {
-        display: flex;
-        gap: 8px;
-      }
-
-      .tab {
-        border-radius: 10px;
-        border: 1px solid var(--stroke);
-        background: rgba(255, 255, 255, 0.05);
-        color: var(--text);
-        font-weight: 650;
-        padding: 8px 12px;
-        cursor: pointer;
-      }
-
-      .tab.active {
-        background: rgba(103, 129, 255, 0.3);
-      }
-
-      .form {
-        display: grid;
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .field {
-        display: grid;
-        gap: 6px;
-      }
-
-      .field label {
-        font-size: 0.88rem;
-        color: #d4daf8;
-      }
-
-      .field input,
-      .field select {
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        background: rgba(13, 15, 28, 0.8);
-        color: var(--text);
-        padding: 10px 12px;
-      }
-
-      .meter {
-        height: 12px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.1);
-        overflow: hidden;
-      }
-
-      .meter > i {
-        display: block;
-        height: 100%;
-        width: 0;
-        background: linear-gradient(120deg, var(--success), var(--secondary));
-        transition: width 700ms ease;
-      }
-
-      .kpi {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .kpi > div {
-        padding: 12px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .leaderboard {
-        display: grid;
-        gap: 8px;
-      }
-
-      .leaderboard-item {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        gap: 8px;
-        padding: 10px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.04);
-      }
-
-      .leaderboard-item.me {
-        border: 1px solid rgba(83, 240, 180, 0.35);
-        background: rgba(83, 240, 180, 0.08);
-      }
-
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--secondary);
-      }
-
-      .progress-list {
-        display: grid;
-        gap: 10px;
-      }
-
-      .progress-item {
-        display: grid;
-        gap: 6px;
-      }
-
-      .progress-head {
-        display: flex;
-        justify-content: space-between;
-        color: #d6dcff;
-        font-size: 0.9rem;
-      }
-
-      footer {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 26px 0 42px;
-        color: var(--muted);
-      }
-
-      /* Reveal animation */
-      .reveal {
-        opacity: 0;
-        transform: translateY(12px);
-        transition: opacity 400ms ease, transform 400ms ease;
-      }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      @media (min-width: 768px) {
-        .hero-grid {
-          grid-template-columns: 1.2fr 0.8fr;
-          align-items: center;
-        }
-
-        .feature-grid,
-        .social-proof-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .dashboard-grid {
-          grid-template-columns: 0.9fr 1.1fr;
-        }
-
-        .kpi {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-      }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Orbitron:wght@400;600;800&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="nav">
-      <div class="container nav-inner">
-        <a href="#home" class="brand"><span class="brand-dot"></span> StreakRank</a>
-        <a class="btn btn-ghost" href="#dashboard">Open Dashboard</a>
+    <div id="loader" class="loader-screen" aria-live="polite">
+      <div class="loader-content">
+        <p class="loader-text">Initializing Royal Protocol...</p>
+        <div class="loader-track"><span id="loaderProgress"></span></div>
       </div>
-    </header>
+    </div>
 
-    <main>
-      <!-- Homepage -->
-      <section id="home" class="hero">
-        <div class="container hero-grid">
-          <div class="reveal">
-            <p class="chip">Phase 1 MVP • Gen-Z India</p>
-            <h1 class="hero-title">Turn daily study into <span>rank, streak, and status</span>.</h1>
-            <p class="hero-copy">
-              StreakRank helps students stay consistent through focus sprints, XP progression,
-              and social challenge loops designed for attention-era motivation.
-            </p>
-            <div class="hero-actions">
-              <a href="#dashboard" class="btn btn-primary">Start Free Sprint</a>
-              <a href="#features" class="btn btn-ghost">See Features</a>
+    <canvas id="galaxyCanvas" aria-hidden="true"></canvas>
+    <canvas id="fireworksCanvas" aria-hidden="true"></canvas>
+    <div id="starTrailLayer" aria-hidden="true"></div>
+
+    <main id="mainContent" class="hidden">
+      <section class="hero" id="home">
+        <div class="beam"></div>
+        <div class="planet"></div>
+        <div class="hero-content">
+          <div class="crown-wrap">
+            <div id="crown" class="crown" aria-hidden="true">
+              <span class="peak p1"></span><span class="peak p2"></span><span class="peak p3"></span>
+              <span class="jewel"></span>
             </div>
           </div>
-
-          <aside class="hero-card reveal">
-            <h3 style="margin-top: 0">Live Pulse</h3>
-            <div class="quick-stats">
-              <div><b id="statActive">2,814</b><small>Active now</small></div>
-              <div><b id="statMinutes">186K</b><small>Minutes today</small></div>
-              <div><b id="statShares">9,102</b><small>Cards shared</small></div>
-            </div>
-            <div class="ticker"><span id="tickerText">Delhi surged +12 rank in last 30 minutes • Pune streak club crossed 10K XP • NEET Sprint Battle starts in 18 min</span></div>
-          </aside>
+          <h1>King Soumy Thakur</h1>
+          <h2>Level 14 Unlocked</h2>
+          <p>February 21 – A New Era Begins</p>
         </div>
       </section>
 
-      <section id="features">
-        <div class="container">
-          <h2 class="section-title reveal">Core MVP Features</h2>
-          <p class="section-sub reveal">
-            Lightweight but addictive building blocks for consistency and social accountability.
-          </p>
-          <div class="feature-grid">
-            <article class="glass-card feature-card reveal">
-              <p class="chip">Focus</p>
-              <h3>Study Sprint Timer</h3>
-              <p>25/45/60 minute sessions with instant XP rewards and streak-safe completion states.</p>
-            </article>
-            <article class="glass-card feature-card reveal">
-              <p class="chip">Motivation</p>
-              <h3>XP + Level Loop</h3>
-              <p>Gamified rank progression from Bronze to Legend with visible effort-to-status mapping.</p>
-            </article>
-            <article class="glass-card feature-card reveal">
-              <p class="chip">Social</p>
-              <h3>Leaderboard Battles</h3>
-              <p>Friend and city rankings to trigger healthy competition and recurring challenge invites.</p>
-            </article>
-          </div>
+      <section class="countdown section-card">
+        <h3>Live Royal Countdown</h3>
+        <div id="countdownGrid" class="countdown-grid">
+          <article><span id="days">00</span><small>Days</small></article>
+          <article><span id="hours">00</span><small>Hours</small></article>
+          <article><span id="minutes">00</span><small>Minutes</small></article>
+          <article><span id="seconds">00</span><small>Seconds</small></article>
         </div>
       </section>
 
-      <section>
-        <div class="container">
-          <h2 class="section-title reveal">Social Proof</h2>
-          <p class="section-sub reveal">Early demand signals from students, creators, and challenge groups.</p>
-          <div class="social-proof-grid">
-            <div class="glass-card feature-card reveal">
-              <b style="font-size:1.5rem">4.8/5</b>
-              <p>Student satisfaction on streak accountability experience.</p>
-            </div>
-            <div class="glass-card feature-card reveal">
-              <b style="font-size:1.5rem">31%</b>
-              <p>Week-1 users sharing progress cards with at least one friend.</p>
-            </div>
-            <div class="glass-card feature-card reveal">
-              <b style="font-size:1.5rem">2.3x</b>
-              <p>Higher consistency compared to solo, ungamified prep routines.</p>
-            </div>
-          </div>
+      <section class="section-card">
+        <h3>Level 14 Gamer Mode</h3>
+        <div class="stats-grid">
+          <article class="tilt-card">Confidence +10</article>
+          <article class="tilt-card">Knowledge +20</article>
+          <article class="tilt-card">Leadership +50</article>
+          <article class="tilt-card">Legend Status Activated</article>
         </div>
       </section>
 
-      <!-- Dashboard -->
-      <section id="dashboard">
-        <div class="container">
-          <h2 class="section-title reveal">User Dashboard (MVP UI)</h2>
-          <p class="section-sub reveal">
-            Includes login/signup screen, XP system, leaderboard, and progress tracker powered by dummy data.
-          </p>
-
-          <div class="dashboard-grid">
-            <div class="glass-card panel reveal">
-              <h3 style="margin-top: 0">Login / Signup</h3>
-              <div class="auth-tabs">
-                <button class="tab active" data-mode="login">Login</button>
-                <button class="tab" data-mode="signup">Signup</button>
-              </div>
-
-              <form class="form" id="authForm">
-                <div class="field">
-                  <label for="nameInput">Name</label>
-                  <input id="nameInput" name="name" type="text" placeholder="Aarav Singh" required />
-                </div>
-                <div class="field">
-                  <label for="emailInput">Email</label>
-                  <input id="emailInput" name="email" type="email" placeholder="you@example.com" required />
-                </div>
-                <div class="field" id="examField" style="display: none">
-                  <label for="examInput">Target Exam</label>
-                  <select id="examInput" name="exam">
-                    <option>JEE</option>
-                    <option>NEET</option>
-                    <option>CUET</option>
-                    <option>Semester</option>
-                  </select>
-                </div>
-                <button class="btn btn-primary" type="submit">Continue</button>
-                <small id="authHint" style="color: var(--muted)">Login mode enabled.</small>
-              </form>
-            </div>
-
-            <div class="glass-card panel reveal">
-              <h3 style="margin-top: 0">XP + Progress</h3>
-              <div class="kpi" id="kpiCards"></div>
-
-              <h4 style="margin-bottom: 8px">Level Progress</h4>
-              <div class="meter"><i id="xpMeter"></i></div>
-              <p id="levelLabel" style="color: var(--muted); margin-top: 8px"></p>
-
-              <h4 style="margin-top: 18px; margin-bottom: 10px">Subject Progress</h4>
-              <div class="progress-list" id="progressList"></div>
-
-              <h4 style="margin-top: 18px; margin-bottom: 10px">Leaderboard</h4>
-              <div class="leaderboard" id="leaderboard"></div>
-            </div>
-          </div>
-        </div>
+      <section class="section-card celebrate-wrap">
+        <button id="celebrateBtn" class="celebrate-btn">Begin Coronation Ceremony 👑</button>
+        <p id="floatingMessage" class="floating-message" aria-live="polite"></p>
       </section>
+
+      <section class="section-card game-wrap">
+        <h3>Mini Game — Collect The Stars</h3>
+        <p>Click the falling stars and reach score <strong>14</strong>.</p>
+        <div class="scoreboard">Score: <span id="score">0</span></div>
+        <div id="gameArea" class="game-area"></div>
+        <p id="gameMessage" class="game-message"></p>
+      </section>
+
+      <footer>
+        <div class="divider"></div>
+        <p>Built for King Soumy Thakur</p>
+        <p>14 Years of Greatness</p>
+        <p>February 21</p>
+      </footer>
     </main>
 
-    <footer>
-      <div class="container" style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap">
-        <small>© 2026 StreakRank MVP. Built for consistency-first students.</small>
-        <small>Made with HTML + CSS + JavaScript (Phase 1 prototype).</small>
+    <button id="musicToggle" class="music-toggle" aria-label="Toggle music">🎵</button>
+
+    <div id="surpriseModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="surpriseTitle">
+      <div class="modal-card">
+        <h4 id="surpriseTitle">Soumy 👑</h4>
+        <p>
+          At 14, you are not just growing older…<br />
+          You are becoming unstoppable.
+        </p>
+        <button id="closeModal" class="close-btn">Continue the Legend</button>
       </div>
-    </footer>
+    </div>
 
-    <script>
-      /**
-       * Phase 1 dummy data model.
-       * This is intentionally static for front-end MVP visualization.
-       */
-      const state = {
-        user: {
-          name: "You",
-          streakDays: 11,
-          totalXp: 2840,
-          weeklyMinutes: 960,
-          level: 8,
-          levelXp: 340,
-          levelXpGoal: 500,
-        },
-        progress: [
-          { subject: "Physics", done: 74 },
-          { subject: "Chemistry", done: 63 },
-          { subject: "Mathematics", done: 57 },
-          { subject: "Mock Tests", done: 41 },
-        ],
-        leaderboard: [
-          { rank: 1, name: "Riya", xp: 3720 },
-          { rank: 2, name: "Kabir", xp: 3310 },
-          { rank: 3, name: "You", xp: 2840, me: true },
-          { rank: 4, name: "Ananya", xp: 2660 },
-          { rank: 5, name: "Samar", xp: 2515 },
-        ],
-      };
+    <audio id="bgMusic" preload="none" loop>
+      <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8c4b0b0db4.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="ambientSound" preload="auto">
+      <source src="https://cdn.pixabay.com/audio/2022/01/18/audio_d0c6ff1ff0.mp3" type="audio/mpeg" />
+    </audio>
 
-      /** Smooth reveal on scroll for subtle, modern motion. */
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
-        });
-      }, { threshold: 0.15 });
-
-      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-
-      /** Render KPI cards from state. */
-      function renderKpis() {
-        const cards = [
-          { label: "Total XP", value: state.user.totalXp },
-          { label: "Current Streak", value: `${state.user.streakDays} days` },
-          { label: "Weekly Minutes", value: state.user.weeklyMinutes },
-          { label: "Level", value: state.user.level },
-        ];
-
-        const kpiCards = document.getElementById("kpiCards");
-        kpiCards.innerHTML = cards
-          .map((card) => `<div><small>${card.label}</small><b style="display:block;font-size:1.05rem;margin-top:4px">${card.value}</b></div>`)
-          .join("");
-      }
-
-      /** Render progress bars for subjects. */
-      function renderProgress() {
-        const list = document.getElementById("progressList");
-        list.innerHTML = state.progress
-          .map(
-            ({ subject, done }) => `
-            <div class="progress-item">
-              <div class="progress-head"><span>${subject}</span><span>${done}%</span></div>
-              <div class="meter"><i style="width:${done}%"></i></div>
-            </div>`
-          )
-          .join("");
-      }
-
-      /** Render leaderboard rows. */
-      function renderLeaderboard() {
-        const board = document.getElementById("leaderboard");
-        board.innerHTML = state.leaderboard
-          .map(
-            (user) => `
-            <div class="leaderboard-item ${user.me ? "me" : ""}">
-              <strong>#${user.rank}</strong>
-              <div style="display:flex;align-items:center;gap:8px"><span class="dot"></span><span>${user.name}</span></div>
-              <b>${user.xp} XP</b>
-            </div>`
-          )
-          .join("");
-      }
-
-      /** Animate level meter width for a polished UI effect. */
-      function renderLevel() {
-        const percent = Math.round((state.user.levelXp / state.user.levelXpGoal) * 100);
-        const meter = document.getElementById("xpMeter");
-        const label = document.getElementById("levelLabel");
-        label.textContent = `${state.user.levelXp}/${state.user.levelXpGoal} XP to Level ${state.user.level + 1} (${percent}%)`;
-
-        requestAnimationFrame(() => {
-          meter.style.width = `${percent}%`;
-        });
-      }
-
-      /** Login/signup tab state logic for UI-only auth flow simulation. */
-      function setupAuthTabs() {
-        const tabs = document.querySelectorAll(".tab");
-        const examField = document.getElementById("examField");
-        const authHint = document.getElementById("authHint");
-
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            tabs.forEach((t) => t.classList.remove("active"));
-            tab.classList.add("active");
-
-            const mode = tab.dataset.mode;
-            const signupMode = mode === "signup";
-            examField.style.display = signupMode ? "grid" : "none";
-            authHint.textContent = signupMode
-              ? "Signup mode: choose exam track for personalized dashboard."
-              : "Login mode enabled.";
-          });
-        });
-
-        document.getElementById("authForm").addEventListener("submit", (event) => {
-          event.preventDefault();
-          const formData = new FormData(event.currentTarget);
-          const inputName = formData.get("name")?.toString().trim();
-          if (inputName) {
-            state.user.name = inputName;
-            document.title = `StreakRank — Welcome ${state.user.name}`;
-            alert(`Welcome ${state.user.name}! This Phase 1 MVP uses dummy data for now.`);
-          }
-        });
-      }
-
-      /** Tiny simulated live updates for social-proof hero stats. */
-      function startPulse() {
-        setInterval(() => {
-          const activeNode = document.getElementById("statActive");
-          const minuteNode = document.getElementById("statMinutes");
-          const shareNode = document.getElementById("statShares");
-
-          const active = parseInt(activeNode.textContent.replace(/,/g, ""), 10) + Math.floor(Math.random() * 6);
-          const minutes = parseInt(minuteNode.textContent.replace(/[^\d]/g, ""), 10) + Math.floor(Math.random() * 25);
-          const shares = parseInt(shareNode.textContent.replace(/,/g, ""), 10) + Math.floor(Math.random() * 4);
-
-          activeNode.textContent = active.toLocaleString("en-IN");
-          minuteNode.textContent = `${Math.floor(minutes / 1000)}${String(minutes % 1000).padStart(3, "0")}K`;
-          shareNode.textContent = shares.toLocaleString("en-IN");
-        }, 3200);
-      }
-
-      renderKpis();
-      renderProgress();
-      renderLeaderboard();
-      renderLevel();
-      setupAuthTabs();
-      startPulse();
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
