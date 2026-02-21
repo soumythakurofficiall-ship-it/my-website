@@ -3,26 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StreakRank — Study. Compete. Share.</title>
-    <meta
-      name="description"
-      content="StreakRank Phase 1 MVP: AI-ready exam prep gamification with streaks, XP, and leaderboard-driven motivation."
-    />
+    <meta name="description" content="Exam Booster Hub helps students quickly generate topic notes, MCQs, short questions, and revision sheets for classes 6 to 10." />
+    <meta name="keywords" content="Exam Booster Hub, student notes, MCQs, revision, class 6, class 7, class 8, class 9, class 10" />
+    <meta name="author" content="Exam Booster Hub" />
+    <meta name="robots" content="index, follow" />
+    <title>Exam Booster Hub | Smart Study Generator</title>
+
+    <!-- Google AdSense placeholder: replace with your own client/publisher script -->
+    <!--
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX"
+      crossorigin="anonymous"></script>
+    -->
+
     <style>
       :root {
-        --bg-0: #09090f;
-        --bg-1: #0f1020;
-        --card: rgba(255, 255, 255, 0.08);
-        --stroke: rgba(255, 255, 255, 0.16);
-        --text: #e8ebff;
-        --muted: #b8bed8;
-        --primary: #9a6bff;
-        --secondary: #35d6ff;
-        --success: #58f29d;
-        --warning: #ffd166;
-        --danger: #ff6b8a;
-        --shadow: 0 10px 30px rgba(18, 18, 34, 0.45);
-        --radius: 18px;
+        --primary: #1d4ed8;
+        --primary-dark: #1e3a8a;
+        --accent: #2563eb;
+        --bg: #f4f8ff;
+        --card: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: #dbeafe;
+        --ok: #16a34a;
+        --radius: 16px;
+        --shadow: 0 12px 30px rgba(29, 78, 216, 0.12);
       }
 
       * {
@@ -33,677 +38,508 @@
       body {
         margin: 0;
         padding: 0;
-        font-family: Inter, Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: radial-gradient(circle at 20% 0%, #1f1140 0%, var(--bg-0) 45%),
-          radial-gradient(circle at 80% 10%, #061d2e 0%, transparent 30%),
-          var(--bg-1);
+        font-family: "Inter", "Segoe UI", Tahoma, sans-serif;
+        background: linear-gradient(180deg, #eef4ff, #f8fbff);
         color: var(--text);
-        min-height: 100%;
-        scroll-behavior: smooth;
       }
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .container {
+      .page {
         width: min(1100px, 92vw);
         margin: 0 auto;
       }
 
-      /* Navigation */
-      .nav {
+      .site-header {
         position: sticky;
         top: 0;
         z-index: 20;
-        backdrop-filter: blur(14px);
-        background: rgba(7, 7, 15, 0.65);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
       }
 
-      .nav-inner {
-        min-height: 68px;
+      .header-inner {
+        min-height: 72px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 1rem;
       }
 
-      .brand {
-        font-weight: 800;
-        letter-spacing: 0.2px;
+      .logo {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 0.6rem;
+        font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+        font-weight: 800;
+        color: var(--primary-dark);
       }
 
-      .brand-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: linear-gradient(120deg, var(--primary), var(--secondary));
-        box-shadow: 0 0 18px #8a73ff;
+      .logo-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 800;
+      }
+
+      main {
+        padding: 2rem 0 2.8rem;
+      }
+
+      .intro {
+        text-align: center;
+        margin-bottom: 1.6rem;
+        animation: rise 600ms ease;
+      }
+
+      .intro h1 {
+        margin: 0;
+        font-size: clamp(1.5rem, 3.1vw, 2.3rem);
+      }
+
+      .intro p {
+        color: var(--muted);
+        margin: 0.7rem auto 0;
+        max-width: 65ch;
+        line-height: 1.6;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1rem;
+        animation: rise 500ms ease;
+      }
+
+      .card h2 {
+        margin: 0 0 0.9rem;
+        font-size: 1.15rem;
+        color: var(--primary-dark);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 0.72rem 0.78rem;
+        border-radius: 12px;
+        border: 1px solid #cbd5e1;
+        font-size: 0.96rem;
+        font: inherit;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: var(--accent);
+        outline: 2px solid rgba(37, 99, 235, 0.2);
+      }
+
+      .toggle-wrap {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.65rem 0.8rem;
+        background: #f8fbff;
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+      }
+
+      .mode-pill {
+        display: inline-block;
+        background: #e0edff;
+        color: var(--primary-dark);
+        font-size: 0.84rem;
+        padding: 0.22rem 0.6rem;
+        border-radius: 999px;
+        font-weight: 700;
       }
 
       .btn {
         border: none;
-        outline: none;
         cursor: pointer;
-        border-radius: 14px;
-        color: #fff;
-        font-weight: 650;
-        transition: transform 0.2s ease, box-shadow 0.25s ease, opacity 0.2s ease;
-      }
-
-      .btn:active {
-        transform: translateY(1px) scale(0.99);
-      }
-
-      .btn-primary {
-        background: linear-gradient(120deg, var(--primary), #6a8bff, var(--secondary));
-        box-shadow: 0 8px 24px rgba(90, 115, 255, 0.35);
-        padding: 12px 18px;
-      }
-
-      .btn-ghost {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        padding: 11px 16px;
+        font-weight: 700;
+        transition: transform 0.2s ease, opacity 0.2s ease;
       }
 
       .btn:hover {
         transform: translateY(-1px);
-        opacity: 0.96;
       }
 
-      /* Section base */
-      section {
-        padding: 68px 0;
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+        color: #fff;
       }
 
-      .section-title {
-        font-size: clamp(1.4rem, 2vw + 0.5rem, 2rem);
-        margin: 0 0 10px;
+      .btn-secondary {
+        background: #e2e8f0;
+        color: #0f172a;
       }
 
-      .section-sub {
+      .action-row {
+        margin-top: 0.35rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+      }
+
+      .status {
+        min-height: 1.4rem;
+        margin-top: 0.6rem;
         color: var(--muted);
-        margin: 0 0 26px;
+        font-size: 0.93rem;
+      }
+
+      .status.success {
+        color: var(--ok);
+      }
+
+      .loader {
+        display: none;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .loader.active {
+        display: inline-flex;
+      }
+
+      .spinner {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid #cbd5e1;
+        border-top-color: var(--primary);
+        animation: spin 0.85s linear infinite;
+      }
+
+      .output-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .output-card {
+        border: 1px solid var(--border);
+        background: #fcfdff;
+        border-radius: 14px;
+        padding: 1rem;
+      }
+
+      .output-card h3 {
+        margin: 0 0 0.7rem;
+        color: var(--primary-dark);
+      }
+
+      .output-card p,
+      .output-card li {
+        color: #1e293b;
         line-height: 1.6;
       }
 
-      /* Hero */
-      .hero {
-        padding-top: 52px;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .hero-title {
-        font-size: clamp(2rem, 6vw, 3.4rem);
-        line-height: 1.1;
+      .output-card ul,
+      .output-card ol {
         margin: 0;
+        padding-left: 1.1rem;
       }
 
-      .hero-title span {
-        background: linear-gradient(110deg, #d6c6ff 0%, #9dc8ff 35%, #76f8ff 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+      .exam-mode .output-card {
+        border-left: 5px solid var(--primary);
+        background: #fff;
       }
 
-      .hero-copy {
-        color: var(--muted);
-        font-size: 1.03rem;
-        max-width: 60ch;
-        line-height: 1.65;
+      .exam-mode .intro p,
+      .exam-mode .status {
+        color: #0f172a;
       }
 
-      .hero-actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
       }
 
-      .hero-card,
-      .glass-card {
-        border-radius: var(--radius);
-        border: 1px solid var(--stroke);
-        background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(10px);
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
-      .hero-card {
-        padding: 18px;
-      }
-
-      .quick-stats {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .quick-stats div {
-        background: rgba(9, 11, 22, 0.65);
-        border-radius: 14px;
-        padding: 10px;
-      }
-
-      .quick-stats b {
-        display: block;
-        font-size: 1.1rem;
-      }
-
-      .ticker {
-        margin-top: 12px;
-        color: #d6dbff;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-
-      .ticker span {
-        display: inline-block;
-        padding-left: 100%;
-        animation: ticker 16s linear infinite;
-      }
-
-      @keyframes ticker {
-        from { transform: translateX(0); }
-        to { transform: translateX(-100%); }
-      }
-
-      /* Features */
-      .feature-grid,
-      .social-proof-grid,
-      .dashboard-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .feature-card {
-        padding: 18px;
-      }
-
-      .feature-card h3 {
-        margin-top: 8px;
-        margin-bottom: 6px;
-      }
-
-      .chip {
-        display: inline-block;
-        font-size: 0.78rem;
-        color: #d3e9ff;
-        padding: 5px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        background: rgba(255, 255, 255, 0.06);
-      }
-
-      /* Dashboard */
-      .panel {
-        padding: 18px;
-      }
-
-      .auth-tabs {
-        display: flex;
-        gap: 8px;
-      }
-
-      .tab {
-        border-radius: 10px;
-        border: 1px solid var(--stroke);
-        background: rgba(255, 255, 255, 0.05);
-        color: var(--text);
-        font-weight: 650;
-        padding: 8px 12px;
-        cursor: pointer;
-      }
-
-      .tab.active {
-        background: rgba(103, 129, 255, 0.3);
-      }
-
-      .form {
-        display: grid;
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .field {
-        display: grid;
-        gap: 6px;
-      }
-
-      .field label {
-        font-size: 0.88rem;
-        color: #d4daf8;
-      }
-
-      .field input,
-      .field select {
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        background: rgba(13, 15, 28, 0.8);
-        color: var(--text);
-        padding: 10px 12px;
-      }
-
-      .meter {
-        height: 12px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.1);
-        overflow: hidden;
-      }
-
-      .meter > i {
-        display: block;
-        height: 100%;
-        width: 0;
-        background: linear-gradient(120deg, var(--success), var(--secondary));
-        transition: width 700ms ease;
-      }
-
-      .kpi {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .kpi > div {
-        padding: 12px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .leaderboard {
-        display: grid;
-        gap: 8px;
-      }
-
-      .leaderboard-item {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        gap: 8px;
-        padding: 10px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.04);
-      }
-
-      .leaderboard-item.me {
-        border: 1px solid rgba(83, 240, 180, 0.35);
-        background: rgba(83, 240, 180, 0.08);
-      }
-
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--secondary);
-      }
-
-      .progress-list {
-        display: grid;
-        gap: 10px;
-      }
-
-      .progress-item {
-        display: grid;
-        gap: 6px;
-      }
-
-      .progress-head {
-        display: flex;
-        justify-content: space-between;
-        color: #d6dcff;
-        font-size: 0.9rem;
-      }
-
-      footer {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 26px 0 42px;
-        color: var(--muted);
-      }
-
-      /* Reveal animation */
-      .reveal {
-        opacity: 0;
-        transform: translateY(12px);
-        transition: opacity 400ms ease, transform 400ms ease;
-      }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      @media (min-width: 768px) {
-        .hero-grid {
-          grid-template-columns: 1.2fr 0.8fr;
-          align-items: center;
+      @media (min-width: 760px) {
+        .form-row {
+          grid-template-columns: 2fr 1fr 1fr;
         }
 
-        .feature-grid,
-        .social-proof-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+        .action-row {
+          grid-template-columns: repeat(2, minmax(0, 220px));
         }
 
-        .dashboard-grid {
-          grid-template-columns: 0.9fr 1.1fr;
+        .output-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .kpi {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
+        .output-card:last-child {
+          grid-column: span 2;
         }
       }
     </style>
   </head>
   <body>
-    <header class="nav">
-      <div class="container nav-inner">
-        <a href="#home" class="brand"><span class="brand-dot"></span> StreakRank</a>
-        <a class="btn btn-ghost" href="#dashboard">Open Dashboard</a>
+    <header class="site-header">
+      <div class="page header-inner">
+        <div class="logo">
+          <span class="logo-mark">E</span>
+          <span>Exam Booster Hub</span>
+        </div>
       </div>
     </header>
 
-    <main>
-      <!-- Homepage -->
-      <section id="home" class="hero">
-        <div class="container hero-grid">
-          <div class="reveal">
-            <p class="chip">Phase 1 MVP • Gen-Z India</p>
-            <h1 class="hero-title">Turn daily study into <span>rank, streak, and status</span>.</h1>
-            <p class="hero-copy">
-              StreakRank helps students stay consistent through focus sprints, XP progression,
-              and social challenge loops designed for attention-era motivation.
-            </p>
-            <div class="hero-actions">
-              <a href="#dashboard" class="btn btn-primary">Start Free Sprint</a>
-              <a href="#features" class="btn btn-ghost">See Features</a>
-            </div>
-          </div>
-
-          <aside class="hero-card reveal">
-            <h3 style="margin-top: 0">Live Pulse</h3>
-            <div class="quick-stats">
-              <div><b id="statActive">2,814</b><small>Active now</small></div>
-              <div><b id="statMinutes">186K</b><small>Minutes today</small></div>
-              <div><b id="statShares">9,102</b><small>Cards shared</small></div>
-            </div>
-            <div class="ticker"><span id="tickerText">Delhi surged +12 rank in last 30 minutes • Pune streak club crossed 10K XP • NEET Sprint Battle starts in 18 min</span></div>
-          </aside>
-        </div>
+    <main class="page" id="appRoot">
+      <section class="intro">
+        <h1>Smart study materials in one click</h1>
+        <p>
+          Enter your topic, choose class and language, then generate notes, quiz questions,
+          short-answer practice, and a one-page revision sheet.
+        </p>
       </section>
 
-      <section id="features">
-        <div class="container">
-          <h2 class="section-title reveal">Core MVP Features</h2>
-          <p class="section-sub reveal">
-            Lightweight but addictive building blocks for consistency and social accountability.
-          </p>
-          <div class="feature-grid">
-            <article class="glass-card feature-card reveal">
-              <p class="chip">Focus</p>
-              <h3>Study Sprint Timer</h3>
-              <p>25/45/60 minute sessions with instant XP rewards and streak-safe completion states.</p>
-            </article>
-            <article class="glass-card feature-card reveal">
-              <p class="chip">Motivation</p>
-              <h3>XP + Level Loop</h3>
-              <p>Gamified rank progression from Bronze to Legend with visible effort-to-status mapping.</p>
-            </article>
-            <article class="glass-card feature-card reveal">
-              <p class="chip">Social</p>
-              <h3>Leaderboard Battles</h3>
-              <p>Friend and city rankings to trigger healthy competition and recurring challenge invites.</p>
-            </article>
-          </div>
-        </div>
-      </section>
+      <section class="grid">
+        <article class="card">
+          <h2>Generate Study Pack</h2>
 
-      <section>
-        <div class="container">
-          <h2 class="section-title reveal">Social Proof</h2>
-          <p class="section-sub reveal">Early demand signals from students, creators, and challenge groups.</p>
-          <div class="social-proof-grid">
-            <div class="glass-card feature-card reveal">
-              <b style="font-size:1.5rem">4.8/5</b>
-              <p>Student satisfaction on streak accountability experience.</p>
+          <div class="form-row">
+            <div>
+              <label for="topic">Topic</label>
+              <input id="topic" type="text" placeholder="e.g. Photosynthesis" />
             </div>
-            <div class="glass-card feature-card reveal">
-              <b style="font-size:1.5rem">31%</b>
-              <p>Week-1 users sharing progress cards with at least one friend.</p>
+
+            <div>
+              <label for="classLevel">Class</label>
+              <select id="classLevel">
+                <option value="">Select class</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+              </select>
             </div>
-            <div class="glass-card feature-card reveal">
-              <b style="font-size:1.5rem">2.3x</b>
-              <p>Higher consistency compared to solo, ungamified prep routines.</p>
+
+            <div>
+              <label for="language">Language</label>
+              <select id="language">
+                <option value="">Select language</option>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+              </select>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Dashboard -->
-      <section id="dashboard">
-        <div class="container">
-          <h2 class="section-title reveal">User Dashboard (MVP UI)</h2>
-          <p class="section-sub reveal">
-            Includes login/signup screen, XP system, leaderboard, and progress tracker powered by dummy data.
-          </p>
-
-          <div class="dashboard-grid">
-            <div class="glass-card panel reveal">
-              <h3 style="margin-top: 0">Login / Signup</h3>
-              <div class="auth-tabs">
-                <button class="tab active" data-mode="login">Login</button>
-                <button class="tab" data-mode="signup">Signup</button>
-              </div>
-
-              <form class="form" id="authForm">
-                <div class="field">
-                  <label for="nameInput">Name</label>
-                  <input id="nameInput" name="name" type="text" placeholder="Aarav Singh" required />
-                </div>
-                <div class="field">
-                  <label for="emailInput">Email</label>
-                  <input id="emailInput" name="email" type="email" placeholder="you@example.com" required />
-                </div>
-                <div class="field" id="examField" style="display: none">
-                  <label for="examInput">Target Exam</label>
-                  <select id="examInput" name="exam">
-                    <option>JEE</option>
-                    <option>NEET</option>
-                    <option>CUET</option>
-                    <option>Semester</option>
-                  </select>
-                </div>
-                <button class="btn btn-primary" type="submit">Continue</button>
-                <small id="authHint" style="color: var(--muted)">Login mode enabled.</small>
-              </form>
-            </div>
-
-            <div class="glass-card panel reveal">
-              <h3 style="margin-top: 0">XP + Progress</h3>
-              <div class="kpi" id="kpiCards"></div>
-
-              <h4 style="margin-bottom: 8px">Level Progress</h4>
-              <div class="meter"><i id="xpMeter"></i></div>
-              <p id="levelLabel" style="color: var(--muted); margin-top: 8px"></p>
-
-              <h4 style="margin-top: 18px; margin-bottom: 10px">Subject Progress</h4>
-              <div class="progress-list" id="progressList"></div>
-
-              <h4 style="margin-top: 18px; margin-bottom: 10px">Leaderboard</h4>
-              <div class="leaderboard" id="leaderboard"></div>
-            </div>
+          <div style="margin-top: 0.85rem" class="toggle-wrap">
+            <input id="examMode" type="checkbox" style="width: auto" />
+            <label for="examMode" style="margin: 0">Enable Exam Mode</label>
+            <span id="modeLabel" class="mode-pill">Normal</span>
           </div>
-        </div>
+
+          <div class="action-row">
+            <button id="generateBtn" class="btn btn-primary" type="button">Generate</button>
+            <button id="pdfBtn" class="btn btn-secondary" type="button">Download as PDF</button>
+          </div>
+
+          <div class="status" id="statusText"></div>
+          <div class="loader" id="loader">
+            <span class="spinner" aria-hidden="true"></span>
+            <span>Generating your study pack...</span>
+          </div>
+        </article>
+
+        <article class="card" id="resultSection" style="display: none">
+          <h2>Generated Output</h2>
+          <div class="output-grid">
+            <section class="output-card">
+              <h3>Short Notes</h3>
+              <div id="notesOutput"></div>
+            </section>
+
+            <section class="output-card">
+              <h3>10 MCQs with Answers</h3>
+              <div id="mcqOutput"></div>
+            </section>
+
+            <section class="output-card">
+              <h3>5 Short Answer Questions</h3>
+              <div id="shortQuestionOutput"></div>
+            </section>
+
+            <section class="output-card">
+              <h3>1-Page Quick Revision Summary</h3>
+              <div id="revisionOutput"></div>
+            </section>
+          </div>
+        </article>
       </section>
     </main>
 
-    <footer>
-      <div class="container" style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap">
-        <small>© 2026 StreakRank MVP. Built for consistency-first students.</small>
-        <small>Made with HTML + CSS + JavaScript (Phase 1 prototype).</small>
-      </div>
-    </footer>
-
     <script>
-      /**
-       * Phase 1 dummy data model.
-       * This is intentionally static for front-end MVP visualization.
-       */
-      const state = {
-        user: {
-          name: "You",
-          streakDays: 11,
-          totalXp: 2840,
-          weeklyMinutes: 960,
-          level: 8,
-          levelXp: 340,
-          levelXpGoal: 500,
-        },
-        progress: [
-          { subject: "Physics", done: 74 },
-          { subject: "Chemistry", done: 63 },
-          { subject: "Mathematics", done: 57 },
-          { subject: "Mock Tests", done: 41 },
-        ],
-        leaderboard: [
-          { rank: 1, name: "Riya", xp: 3720 },
-          { rank: 2, name: "Kabir", xp: 3310 },
-          { rank: 3, name: "You", xp: 2840, me: true },
-          { rank: 4, name: "Ananya", xp: 2660 },
-          { rank: 5, name: "Samar", xp: 2515 },
-        ],
+      // -----------------------------
+      // DOM references
+      // -----------------------------
+      const topicInput = document.getElementById("topic");
+      const classSelect = document.getElementById("classLevel");
+      const languageSelect = document.getElementById("language");
+      const generateBtn = document.getElementById("generateBtn");
+      const pdfBtn = document.getElementById("pdfBtn");
+      const examModeToggle = document.getElementById("examMode");
+      const modeLabel = document.getElementById("modeLabel");
+      const loader = document.getElementById("loader");
+      const statusText = document.getElementById("statusText");
+      const appRoot = document.getElementById("appRoot");
+      const resultSection = document.getElementById("resultSection");
+
+      const notesOutput = document.getElementById("notesOutput");
+      const mcqOutput = document.getElementById("mcqOutput");
+      const shortQuestionOutput = document.getElementById("shortQuestionOutput");
+      const revisionOutput = document.getElementById("revisionOutput");
+
+      // -----------------------------
+      // Utility render helpers
+      // -----------------------------
+      const renderList = (items, ordered = false) => {
+        const wrapper = document.createElement(ordered ? "ol" : "ul");
+        items.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          wrapper.appendChild(li);
+        });
+        return wrapper;
       };
 
-      /** Smooth reveal on scroll for subtle, modern motion. */
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
+      const setLoading = (isLoading) => {
+        loader.classList.toggle("active", isLoading);
+        generateBtn.disabled = isLoading;
+        generateBtn.style.opacity = isLoading ? "0.75" : "1";
+      };
+
+      // -----------------------------
+      // API call to backend /generate route
+      // -----------------------------
+      const fetchStudyPack = async (payload) => {
+        const response = await fetch("/generate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         });
-      }, { threshold: 0.15 });
 
-      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+        const data = await response.json();
 
-      /** Render KPI cards from state. */
-      function renderKpis() {
-        const cards = [
-          { label: "Total XP", value: state.user.totalXp },
-          { label: "Current Streak", value: `${state.user.streakDays} days` },
-          { label: "Weekly Minutes", value: state.user.weeklyMinutes },
-          { label: "Level", value: state.user.level },
-        ];
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to generate study pack.");
+        }
 
-        const kpiCards = document.getElementById("kpiCards");
-        kpiCards.innerHTML = cards
-          .map((card) => `<div><small>${card.label}</small><b style="display:block;font-size:1.05rem;margin-top:4px">${card.value}</b></div>`)
-          .join("");
-      }
+        return data;
+      };
 
-      /** Render progress bars for subjects. */
-      function renderProgress() {
-        const list = document.getElementById("progressList");
-        list.innerHTML = state.progress
-          .map(
-            ({ subject, done }) => `
-            <div class="progress-item">
-              <div class="progress-head"><span>${subject}</span><span>${done}%</span></div>
-              <div class="meter"><i style="width:${done}%"></i></div>
-            </div>`
-          )
-          .join("");
-      }
+      // -----------------------------
+      // Generate workflow
+      // -----------------------------
+      async function handleGenerateClick() {
+        const topic = topicInput.value.trim();
+        const classLevel = classSelect.value;
+        const language = languageSelect.value;
 
-      /** Render leaderboard rows. */
-      function renderLeaderboard() {
-        const board = document.getElementById("leaderboard");
-        board.innerHTML = state.leaderboard
-          .map(
-            (user) => `
-            <div class="leaderboard-item ${user.me ? "me" : ""}">
-              <strong>#${user.rank}</strong>
-              <div style="display:flex;align-items:center;gap:8px"><span class="dot"></span><span>${user.name}</span></div>
-              <b>${user.xp} XP</b>
-            </div>`
-          )
-          .join("");
-      }
+        if (!topic || !classLevel || !language) {
+          statusText.textContent = "Please fill topic, class, and language first.";
+          statusText.classList.remove("success");
+          return;
+        }
 
-      /** Animate level meter width for a polished UI effect. */
-      function renderLevel() {
-        const percent = Math.round((state.user.levelXp / state.user.levelXpGoal) * 100);
-        const meter = document.getElementById("xpMeter");
-        const label = document.getElementById("levelLabel");
-        label.textContent = `${state.user.levelXp}/${state.user.levelXpGoal} XP to Level ${state.user.level + 1} (${percent}%)`;
+        statusText.textContent = "";
+        setLoading(true);
 
-        requestAnimationFrame(() => {
-          meter.style.width = `${percent}%`;
-        });
-      }
+        try {
+          const apiPayload = { topic, classLevel, language, examMode: examModeToggle.checked };
+          const response = await fetchStudyPack(apiPayload);
 
-      /** Login/signup tab state logic for UI-only auth flow simulation. */
-      function setupAuthTabs() {
-        const tabs = document.querySelectorAll(".tab");
-        const examField = document.getElementById("examField");
-        const authHint = document.getElementById("authHint");
+          const notes = response.notes || [];
+          const mcqs = response.mcqs || [];
+          const shortQuestions = response.shortQuestions || [];
+          const revision = response.revisionSheet || [];
 
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            tabs.forEach((t) => t.classList.remove("active"));
-            tab.classList.add("active");
+          notesOutput.innerHTML = "";
+          mcqOutput.innerHTML = "";
+          shortQuestionOutput.innerHTML = "";
+          revisionOutput.innerHTML = "";
 
-            const mode = tab.dataset.mode;
-            const signupMode = mode === "signup";
-            examField.style.display = signupMode ? "grid" : "none";
-            authHint.textContent = signupMode
-              ? "Signup mode: choose exam track for personalized dashboard."
-              : "Login mode enabled.";
+          notesOutput.appendChild(renderList(notes));
+          const mcqList = document.createElement("ol");
+          mcqs.forEach((mcq, index) => {
+            const li = document.createElement("li");
+            if (typeof mcq === "string") {
+              li.textContent = mcq;
+            } else {
+              li.innerHTML = `<strong>Q${index + 1}.</strong> ${mcq.question}<br><em>Options:</em> ${(mcq.options || []).join(" | ")}<br><strong>Answer:</strong> ${mcq.answer}`;
+            }
+            mcqList.appendChild(li);
           });
-        });
+          mcqOutput.appendChild(mcqList);
+          shortQuestionOutput.appendChild(renderList(shortQuestions));
+          revisionOutput.appendChild(renderList(revision));
 
-        document.getElementById("authForm").addEventListener("submit", (event) => {
-          event.preventDefault();
-          const formData = new FormData(event.currentTarget);
-          const inputName = formData.get("name")?.toString().trim();
-          if (inputName) {
-            state.user.name = inputName;
-            document.title = `StreakRank — Welcome ${state.user.name}`;
-            alert(`Welcome ${state.user.name}! This Phase 1 MVP uses dummy data for now.`);
-          }
-        });
+          resultSection.style.display = "block";
+          statusText.textContent = "Study pack generated successfully!";
+          statusText.classList.add("success");
+        } catch (error) {
+          statusText.textContent = error.message || "Something went wrong while generating. Please try again.";
+          statusText.classList.remove("success");
+          console.error(error);
+        } finally {
+          setLoading(false);
+        }
       }
 
-      /** Tiny simulated live updates for social-proof hero stats. */
-      function startPulse() {
-        setInterval(() => {
-          const activeNode = document.getElementById("statActive");
-          const minuteNode = document.getElementById("statMinutes");
-          const shareNode = document.getElementById("statShares");
+      // -----------------------------
+      // Event bindings
+      // -----------------------------
+      generateBtn.addEventListener("click", handleGenerateClick);
 
-          const active = parseInt(activeNode.textContent.replace(/,/g, ""), 10) + Math.floor(Math.random() * 6);
-          const minutes = parseInt(minuteNode.textContent.replace(/[^\d]/g, ""), 10) + Math.floor(Math.random() * 25);
-          const shares = parseInt(shareNode.textContent.replace(/,/g, ""), 10) + Math.floor(Math.random() * 4);
+      pdfBtn.addEventListener("click", () => {
+        window.print();
+      });
 
-          activeNode.textContent = active.toLocaleString("en-IN");
-          minuteNode.textContent = `${Math.floor(minutes / 1000)}${String(minutes % 1000).padStart(3, "0")}K`;
-          shareNode.textContent = shares.toLocaleString("en-IN");
-        }, 3200);
-      }
-
-      renderKpis();
-      renderProgress();
-      renderLeaderboard();
-      renderLevel();
-      setupAuthTabs();
-      startPulse();
+      examModeToggle.addEventListener("change", (event) => {
+        const examModeOn = event.target.checked;
+        appRoot.classList.toggle("exam-mode", examModeOn);
+        modeLabel.textContent = examModeOn ? "Exam Mode" : "Normal";
+      });
     </script>
   </body>
 </html>
